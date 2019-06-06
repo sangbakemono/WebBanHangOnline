@@ -1,0 +1,35 @@
+﻿@model Model.FrameWork.Content
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header style="margin-top: 20px">
+    <div class="container">
+        <div class="blog-post-author">
+            <div class="media">
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="/">@Model.Name</a></h4>
+                    <hr />
+                    @Html.Raw(Model.Detail)
+                </div>
+            </div>
+        </div><!-- /.blog-post-author -->
+
+        <div class="meta-row">
+            <div class="inline">
+                <br />
+                <label>tag:</label>
+                @{
+                    var tags = (List<Model.FrameWork.Tag>)ViewBag.Tags;
+                    foreach (var tag in tags)
+                    {
+                        <span><a href="/tag/@tag.ID">@tag.Name</a>,</span>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</header>
+
+

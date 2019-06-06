@@ -1,0 +1,7 @@
+﻿@model List<Model.FrameWork.SanPhamCategory>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li><a href="/san-pham/@item.MetaTile-@item.ID">@item.Name</a></li>
+        }
+    </ul>

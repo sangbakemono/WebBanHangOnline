@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Soo Smartphone Store</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/css/slider.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/css/easy-responsive-tabs.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/admin/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-social.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery-1.11.3.min.js"></script>
+    <script src="~/Content/js/jquery-ui.js"></script>
+    @*<script type="text/javascript" src="~/Content/js/jquery-1.7.2.min.js"></script>*@
+    <script type="text/javascript" src="~/Content/js/move-top.js"></script>
+    <script type="text/javascript" src="~/Content/js/easing.js"></script>
+    <script type="text/javascript" src="~/Content/js/startstop-slider.js"></script>
+    <script src="~/Content/js/easyResponsiveTabs.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="headertop_desc">
+                @{Html.RenderAction("TopMenu", "Home");}
+            </div>
+            <div class="header_top">
+                <div class="logo">
+                    <a href="/" ref="nofollow"><img src="~/Content/images/logo.png" alt="" /></a>
+                </div>
+                <div class="search_box">
+                    <form action="/tim-kiem" method="get">
+                        <input type="text" id="txtKeyword" name="keyword" placeholder="Bạn tìm gì..."><input type="submit" value="">
+                    </form>
+                </div>
+                @{Html.RenderAction("HeaderCart", "Home");}
+                <script type="text/javascript">
+                    function DropDown(el) {
+                        this.dd = el;
+                        this.initEvents();
+                    }
+                    DropDown.prototype = {
+                        initEvents: function () {
+                            var obj = this;
+
+                            obj.dd.on('click', function (event) {
+                                $(this).toggleClass('active');
+                                event.stopPropagation();
+                            });
+                        }
+                    }
+
+                    $(function () {
+
+                        var dd = new DropDown($('#dd'));
+
+                        $(document).click(function () {
+                            // all dropdowns
+                            $('.wrapper-dropdown-2').removeClass('active');
+                        });
+
+                    });
+
+                </script>
+                <div class="clear"></div>
+            </div>
+            <div class="header_bottom">
+                @{Html.RenderAction("MainMenu", "Home");}
+                <div class="clear"></div>
+            </div>
+            @RenderSection("slide", required: false)
+
+        </div>
+        <div class="main">
+            @RenderBody()
+        </div>
+    </div>
+    @{Html.RenderAction("_Footer", "Home");}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <a href="#" id="toTop"><span id="toTopHover"> </span></a>
+    @RenderSection("jsFooter", required: false)
+</body>
+</html>

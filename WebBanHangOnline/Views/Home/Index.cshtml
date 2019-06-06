@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var slides = (List<Model.FrameWork.Slide>)ViewBag.Slides;
+    var listNewProducts = (List<Model.FrameWork.SanPham>)ViewBag.NewProducts;
+    var listFeatureProducts = (List<Model.FrameWork.SanPham>)ViewBag.ListFeatureProduct;
+}
+
+@section slide
+{
+    <div class="header_slide">
+        <div class="header_bottom_left">
+            <div class="categories">
+                <h3>Danh mục sản phẩm</h3>
+                @{ Html.RenderAction("ProductCategory", "Product");}
+            </div>
+        </div>
+        <div class="header_bottom_right">
+            <div class="slider">
+                <div id="slider">
+                    <div id="mover">
+                        @foreach (var item in slides)
+                        {
+                            <div class="slide">
+                                <div class="slider-img">
+                                    <a href="@item.Link"><img src="~/Content/images/@item.Image" alt="learn more" style="width:100%;" /></a>
+                                </div>
+                                <div class="slider-text">
+                                    <h1>Đại hạ giá<br><span>SALE</span></h1>
+                                    <h2>Giảm 20%</h2>
+                                    <div class="features_list">
+                                        <h4>Iphone Xr, Xs, Xs Max Giá mới cực đã | Trả góp 0%</h4>
+                                        <h3>Chỉ còn:<h2>15.990.000</h2></h3>
+                                    </div>
+                                    <a href="/them-gio-hang?productId=@item.ID&quantity=1" class="button">Mua ngay</a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+}
+<div class="content">
+    <div class="content_top">
+        <div class="heading">
+            <h3>Sản phẩm mới</h3>
+        </div>
+        <div class="see">
+            <p><a href="/san-pham">Xem tất cả</a></p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="section group">
+        @foreach (var item in listNewProducts)
+        {
+            var url = "/chi-tiet/" + item.MetaTile + "-" + item.ID;
+            <div class="grid_1_of_4 images_1_of_4">
+                <a href="@url"><img src="~/Content/HinhAnhSP/@item.Image" alt="@item.Name" style="width:100%" /></a>
+                <h2>@item.Name</h2>
+                <div class="price-details">
+                    <div class="price-number">
+                        <p><span class="rupees">@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</span></p>
+                    </div>
+                    <div class="add-cart">
+                        <h4><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ</a></h4>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="content_bottom">
+        <div class="heading">
+            <h3>Sản phẩm hot</h3>
+        </div>
+        <div class="see">
+            <p><a href="/san-pham">Xem tất cả</a></p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="section group">
+        @foreach (var item in listFeatureProducts)
+        {
+            var url = "/chi-tiet/" + item.MetaTile + "-" + item.ID;
+            <div class="grid_1_of_4 images_1_of_4">
+                <a href="@url"><img src="~/Content/HinhAnhSP/@item.Image" alt="@item.Name" /></a>
+                <h2>@item.Name</h2>
+                <div class="price-details">
+                    <div class="price-number">
+                        <p><span class="rupees">@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</span></p>
+                    </div>
+                    <div class="add-cart">
+                        <h4><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ</a></h4>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

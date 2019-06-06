@@ -1,0 +1,6 @@
+D:\DO_AN_CO_SO\DOAN_WebsiteBanHang\WebBanhangOnline\Common\bin\Debug\Common.dll
+D:\DO_AN_CO_SO\DOAN_WebsiteBanHang\WebBanhangOnline\Common\bin\Debug\Common.pdb
+D:\DO_AN_CO_SO\DOAN_WebsiteBanHang\WebBanhangOnline\Common\obj\Debug\Common.csprojAssemblyReference.cache
+D:\DO_AN_CO_SO\DOAN_WebsiteBanHang\WebBanhangOnline\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+D:\DO_AN_CO_SO\DOAN_WebsiteBanHang\WebBanhangOnline\Common\obj\Debug\Common.dll
+D:\DO_AN_CO_SO\DOAN_WebsiteBanHang\WebBanhangOnline\Common\obj\Debug\Common.pdb

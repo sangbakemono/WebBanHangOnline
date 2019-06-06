@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Model.FrameWork.SanPham>
+@{
+    ViewBag.Title = "Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section slide
+{
+    <div class="header_slide">
+        <div class="header_bottom_left">
+            <div class="categories">
+                <h3>Danh mục sản phẩm</h3>
+                @{ Html.RenderAction("ProductCategory", "Product");}
+            </div>
+            <div class="subscribe">
+                <h2>Thông tin khuyến mãi</h2>
+                <p>Nhập Email tại đây để biết thêm thông tin khuyến mãi</p>
+                <div class="signup">
+                    <form>
+                        <input type="text" value="E-mail " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';"><input type="submit" value="Đăng nhập">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="header_bottom_right">
+            <h3 style="text-align: center; font-size: 30px; color: red">Sản phẩm</h3>
+            <hr />
+            <div class="section group">
+                @foreach (var item in Model)
+                {
+                    var url = "/chi-tiet/" + item.MetaTile + "-" + item.ID;
+                    <div class="grid_1_of_4 images_1_of_4">
+                        <a href="@url"><img src="~/Content/HinhAnhSP/@item.Image" alt="@item.Name" style="width:100%" /></a>
+                        <h2>@item.Name</h2>
+                        <div class="price-details">
+                            <div class="price-number">
+                                <p><span class="rupees">@item.Price</span></p>
+                            </div>
+                            <div class="add-cart">
+                                <h4><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ</a></h4>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+}
+<div class="content-pagenation">
+    <li><a href="#">Frist</a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><span>....</span></li>
+    <li><a href="#">Last</a></li>
+    <div class="clear"> </div>
+</div>
+<div class="clear"></div>

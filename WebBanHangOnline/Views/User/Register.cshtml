@@ -1,0 +1,125 @@
+﻿@model WebBanHangOnline.Models.RegisterModel
+
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+    <script src="~/Content/js/controller/userController.js"></script>
+}
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="field-row">
+                    @using (Html.BeginForm("Register", "User", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h1 style="font-size: 30px; margin-left: 100px; margin-top: 20px">Đăng ký thành viên</h1>
+                            <hr />
+                            <div class="form-group">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @if (ViewBag.Success != null)
+                                {
+                                    <div class="alert alert-success">@ViewBag.Success</div>
+                                }
+                            </div>
+                            <div class="form-group" style="margin-left: 50px">
+                                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9 input-lg">
+                                    @Html.TextBoxFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-left: 50px">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9 input-lg">
+                                    @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-left: 50px">
+                                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9 input-lg">
+                                    @Html.PasswordFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-left: 50px">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9 input-lg">
+                                    @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-left: 50px">
+                                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9 input-lg">
+                                    @Html.TextAreaFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-left: 50px">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9 input-lg">
+                                    @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-left: 50px">
+                                @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9 input-lg">
+                                    @Html.TextBoxFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-left: 50px">
+                                @Html.LabelFor(model => model.ProvinceID, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9 input-lg">
+                                    @Html.DropDownList("ProvinceID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlProvince" })
+                                    @Html.ValidationMessageFor(model => model.ProvinceID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-left: 50px">
+                                @Html.LabelFor(model => model.DistrictID, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9 input-lg">
+                                    @Html.DropDownList("DistrictID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlDistrict" })
+                                    @Html.ValidationMessageFor(model => model.DistrictID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-left: 120px">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Đăng ký" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-horizontal">
+                    <h1 style="font-size: 30px; margin-top: 20px">Đăng kí ngay hôm nay, bạn có thể :</h1>
+                    <hr />
+                    <ul class="list-unstyled list-benefits">
+                        <li><i class="fa-check-circle"></i> - Thanh toán hóa đơn nhanh chóng</li>
+                        <li><i class="fa-check-circle"></i> - Theo dõi đơn đặt hàng dễ dàng</li>
+                        <li><i class="fa-check-circle"></i> - Lưu giữ các giao dịch của bạn</li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>

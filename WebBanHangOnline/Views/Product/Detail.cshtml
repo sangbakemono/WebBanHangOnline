@@ -1,0 +1,186 @@
+﻿@model Model.FrameWork.SanPham
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var category = (Model.FrameWork.SanPhamCategory)ViewBag.Category;
+    var relatedproducts = (List<Model.FrameWork.SanPham>)ViewBag.RelatedProducts;
+}
+
+<div class="content">
+    <div class="content_top">
+        <div class="back-links">
+            <a href="/">Trang chủ</a>  >>> <a href="/san-pham/@category.MetaTile-@category.ID">@category.Name</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="section group">
+        <div class="cont-desc span_1_of_2">
+            <div class="product-details">
+                <div class="grid images_3_of_2">
+                    <div id="container">
+                        <div id="products_example">
+                            <div id="products">
+                                <div class="slides_container">
+                                    <a href="#" target="_blank"><img src="~/Content/HinhAnhSP/@Model.Image" alt=" " /></a>
+                                </div>
+                                <ul class="pagination">
+                                    <li><a href="#"><img src="iphone-xs-max-512gb-detail.png" /></a></li>
+                                    <li><a href="#"><img src="iphone-xs-max-512gb-detail.png" alt=" " /></a></li>
+                                    <li><a href="#"><img src="iphone-xs-max-512gb-detail.png" alt=" " /></a></li>
+                                    <li><a href="#"><img src="iphone-xs-max-512gb-detail.png" alt=" " /></a></li>
+                                    <li><a href="#"><img src="iphone-xs-max-512gb-detail.png" alt=" " /></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="desc span_3_of_2">
+                    <h2>@Model.Name</h2>
+                    <hr/>
+                    <p>Mã sản phẩm: <span>@Model.Code</span></p>
+                    <div class="price">
+                        <p>Giá: <span>@(Model.Price.HasValue ? Model.Price.Value.ToString("N0") : "Liên hệ")₫</span></p>
+                    </div>
+                    <div class="available">
+                        <p>Tùy chọn:</p>
+                        <ul>
+                            <li>
+                                Màu sắc:
+                                <select>
+                                    <option>Bạc</option>
+                                    <option>Đen</option>
+                                    <option>Xám</option>
+                                    <option>Đỏ</option>
+                                </select>
+                            </li>
+                            <li>
+                                Số lượng:<select>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <p></p>
+                        <p>Hotline hỗ trợ bán hàng: 1900 1009 |</p>
+                    </div>
+                    <hr />
+                    <div class="share-desc">
+                        <div class="share">
+                            <p>Chia sẻ:</p>
+                            <ul>
+                                <li><a href="/"><img src="~/Content/images/facebook.png" alt="" /></a></li>
+                                <li><a href="/"><img src="~/Content/images/twitter.png" alt="" /></a></li>
+                            </ul>
+                        </div>
+                        <div class="button">
+                            <a href="/them-gio-hang?productId=@Model.ID&quantity=1">Mua ngay</a>
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>
+                    <div class="wish-list">
+                        <ul>
+                            <li class="wish"><a href="#">Thêm vào yêu thích</a></li>
+                            <li class="compare"><a href="#">So sánh</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="product_desc">
+                <div id="horizontalTab">
+                    <ul class="resp-tabs-list">
+                        <li>MÔ TẢ SẢN PHẨM</li>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="resp-tabs-container">
+                        <div class="product-desc">
+                            <div id="protab1" class="pro-tabcontent" style="display: block;">
+                                @Html.Raw(Model.Detail)
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#horizontalTab').easyResponsiveTabs({
+                        type: 'default', 
+                        width: 'auto', 
+                        fit: true   
+                    });
+                });
+            </script>
+            <div class="content_bottom">
+                <div class="heading">
+                    <h3>Sản phẩm liên quan</h3>
+                </div>
+                <div class="see">
+                    <p><a href="/san-pham">Xem tất cả</a></p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="section group">
+                @foreach (var item in relatedproducts)
+                {
+                    var url = "/chi-tiet/" + item.MetaTile + "-" + item.ID;
+                    <div class="grid_1_of_4 images_1_of_4">
+                        <a href="@url"><img src="~/Content/HinhAnhSP/@item.Image" alt="@item.Name"></a>
+                        <div class="price" style="border:none">
+                            <div class="add-cart" style="float:none">
+                                <h4><a href="/them-gio-hang?productId=@item.ID&quantity=1">Mua ngay</a></h4>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="rightsidebar span_3_of_1">
+            <h2>Danh mục sản phẩm</h2>
+            @{ Html.RenderAction("ProductCategory", "Product");}
+            <div class="subscribe">
+                <h2>Thông tin khuyến mãi</h2>
+                <p>Nhập Email tại đây để biết thêm thông tin khuyến mãi</p>
+                <div class="signup">
+                    <form>
+                        <input type="text" value="E-mail " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';"><input type="submit" value="Đăng nhập">
+                    </form>
+                </div>
+            </div>
+            <div class="community-poll">
+                <h2>Sản Phẩm Nổi Bật</h2>
+                <div class="poll">
+                    <form style="font-size: 20px; margin-left:auto">
+                        @foreach (var item in relatedproducts)
+                        {
+                            var url = "/chi-tiet/" + item.MetaTile + "-" + item.ID;
+                            <ul style="margin-left: inherit">
+                                <li class="sidebar-product-list-item">
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4 no-margin">
+                                            <a href="@url" class="thumb-holder">
+                                                <img alt="" src="~/Content/HinhAnhSP/@item.Image" />
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 no-margin">
+                                            <a href="@url" style="font-size: 20px">@item.Name</a>
+                                            <div class="price">
+                                                <div class="price-prev" style="font-size: 17px">@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</div>
+                                                <div class="price-current" style="font-size: 14px">@(item.PromotionPrice.HasValue ? item.PromotionPrice.Value.ToString("N0") : "Liên hệ")</div>
+                                            </div>
+                                        </div>
+                                </li>
+                            </ul>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

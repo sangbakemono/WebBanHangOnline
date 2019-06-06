@@ -1,0 +1,28 @@
+﻿@model List<Model.FrameWork.Menu>
+<div class="call">
+    <p><span>Hổ trợ khách hàng?</span> Gọi: <span class="number">0905-555-999</span></span></p>
+</div>
+<div class="account_desc">
+    <div class="account_desc">
+        @{ 
+            var session = (UserLogin)Session[WebBanHangOnline.Common.CommonStants.USER_SECSSION];
+        }
+        @if (session == null)
+        {
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li><a href="@item.Link" target="@item.Target">@item.text</a></li>
+                }
+            </ul>
+        }
+        else
+        {
+            <ul>
+                <li>Chào @session.UserName</li>
+                <li>@Html.ActionLink("Thoát", "Logout", "User")</li>
+            </ul>
+        }
+    </div>    
+</div>
+<div class="clear"></div>
